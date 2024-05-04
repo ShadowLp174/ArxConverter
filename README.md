@@ -13,5 +13,8 @@ should open a prompt asking you if you want to install ArxConverter. Click insta
 
 ## Other Currencies
 
-This script can be adjusted to convert to other currencies than Euro.
-To do that, you have to replace the discount tiers in the `discountMap` according to the discounts in your currency and change the symbol in `currency` to your desired icon.
+This script supports GBP, EUR and USD. To select on of them, edit the value of `useCurrency` (first line of code after the comments) to either 0, 1 or 2.
+
+|GBP|EUR|USD|
+|---|---|----
+|0|1|2
