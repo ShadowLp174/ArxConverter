@@ -4,21 +4,57 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.elitedangerous.com/store/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      ShadowLp174
 // @description 4.5.2024, 09:51:01
 // ==/UserScript==
 
-const discountMap = [
+// PRE-SET CURRENCIES:
+/*
+0: GBP
+1: EUR
+2: USD
+
+  Change the number below according to your desired currency
+*/
+const useCurrency = 0;
+
+const gbpMap = [
+  [5000, 299],
+  [8400, 499],
+  [16800, 959],
+  [25500, 1299],
+  [51000, 2499],
+  [85000, 4499]
+];
+const eurMap = [
   [5000, 349],
   [8400, 599],
   [16800, 1149],
   [25500, 1599],
   [51000, 2999],
   [85000, 5499]
-]
-const currency = "€";
+];
+const usdMap = [
+  [5000, 399],
+  [8400, 699],
+  [16800, 1299],
+  [25500, 1899],
+  [51000, 3799],
+  [85000, 5999]
+];
 
+const discountMaps = [
+  gbpMap,
+  eurMap,
+  usdMap
+]
+
+const currencies = ["£", "€", "$"]
+
+
+const discountMap = discountMaps[useCurrency];
+const currency = currencies[useCurrency];
 
 const convertArx = (arx) => {
   // NOTE: This conversion algorithm only works with currencies that are based on hundreds. For example: 100 cents = 1 euro
