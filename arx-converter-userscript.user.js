@@ -59,6 +59,10 @@ const currency = currencies[useCurrency];
 const convertArx = (arx) => {
   // NOTE: This conversion algorithm only works with currencies that are based on hundreds. For example: 100 cents = 1 euro
 
+  // account for sales:
+  arx = arx.split(" ")
+  arx = arx[arx.length - 1] // select last element to display correct price if a sale is displayed
+
   arx = parseInt(arx.replaceAll(",", ""))
 
   // calculate highest discounted tier
