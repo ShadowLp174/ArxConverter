@@ -4,7 +4,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.elitedangerous.com/store/*
 // @grant       none
-// @version     1.2
+// @version     1.21
 // @author      ShadowLp174
 // @description 4.5.2024, 09:51:01
 // ==/UserScript==
@@ -65,8 +65,11 @@ const convertArx = (arx) => {
 
   arx = parseInt(arx.replaceAll(",", ""))
 
+  if (arx === 0) return "0.00";
+
   // calculate highest discounted tier
   let idx = discountMap.findLastIndex(e => e[0] <= arx)
+  console.log(idx, discountMap[idx], arx)
   let price = discountMap[idx][1];
   arx -= discountMap[idx][0];
 
@@ -95,8 +98,7 @@ window.addEventListener("load", () => {
     // in case this is an item on sale, the original and the discounted price are computed and displayed
     arx.forEach((a, j) => {
       const price = (j === 0 && arx.length > 1) ? document.createElement("strike") : document.createElement("span")
-      if (j === 0 && arx.length > 1) price.style = "text-decoration: line-through; opacity: .4";
-      price.style.color = "#000";
+      if (j === 0 && arx.length > 1) price.style = "text-decoration: line-through; opacity: .4; color: #000";
 
       price.innerText = convertArx(a)
       tags[i].appendChild(price);
