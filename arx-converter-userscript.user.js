@@ -4,7 +4,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.elitedangerous.com/store/*
 // @grant       none
-// @version     1.21
+// @version     1.2
 // @author      ShadowLp174
 // @description 4.5.2024, 09:51:01
 // ==/UserScript==
@@ -69,6 +69,9 @@ const convertArx = (arx) => {
 
   // calculate highest discounted tier
   let idx = discountMap.findLastIndex(e => e[0] <= arx)
+  if (idx === -1) {
+    idx = 0; // use lowest tier if the number of arx is smaller than the lowest
+  }
   console.log(idx, discountMap[idx], arx)
   let price = discountMap[idx][1];
   arx -= discountMap[idx][0];
